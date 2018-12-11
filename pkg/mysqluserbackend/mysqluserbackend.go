@@ -66,7 +66,7 @@ func (ub *userBackend) Authenticate(ctx context.Context, token string) (string, 
 	err = db.QueryRow(query, token).Scan(&user, &expires)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return "", errors.New("Invalid path provided")
+			return "", errors.New("Token not found")
 		}
 		ub.logger.Error("CANNOT QUERY STATEMENT")
 		return "", err
@@ -77,7 +77,7 @@ func (ub *userBackend) Authenticate(ctx context.Context, token string) (string, 
 		return "", errors.New("Expired")
 	}
 
-	ub.logger.Info("SHARE AUTHENTICATED", zap.String("user", user))
+	ub.logger.Info("OAUTH AUTHENTICATED", zap.String("user", user))
 
 	return user, nil
 }

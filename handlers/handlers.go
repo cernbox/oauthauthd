@@ -109,8 +109,11 @@ func BasicAuthOnly(logger *zap.Logger, userBackend pkg.UserBackend, sleepPause i
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		reqToken := r.Header.Get("Authorization")
-		splitToken := strings.Split(reqToken, "Bearer")
-		reqToken = splitToken[1]
+
+		if reqToken != "" {
+			splitToken := strings.Split(reqToken, "Bearer")
+			reqToken = splitToken[1]
+		}
 
 		if reqToken == "" {
 			logger.Info("NO TOKEN PROVIDED")
