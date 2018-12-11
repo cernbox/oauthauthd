@@ -1,0 +1,16 @@
+[Unit]
+Description=Authentication daemon for CERNBox
+After=syslog.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/var/log/oauthauthd
+ExecStart=/usr/local/bin/oauthauthd
+StandardOutput=null
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
+
