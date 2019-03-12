@@ -73,7 +73,7 @@ func (ub *userBackend) Authenticate(ctx context.Context, token string) (string, 
 	}
 	now := time.Now().Unix()
 
-	if expires > now {
+	if expires < now {
 		return "", errors.New("Expired")
 	}
 
