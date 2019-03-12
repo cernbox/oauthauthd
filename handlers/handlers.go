@@ -123,6 +123,8 @@ func BasicAuthOnly(logger *zap.Logger, userBackend pkg.UserBackend, sleepPause i
 			return
 		}
 
+		reqToken = strings.TrimSpace(reqToken)
+
 		user, err := userBackend.Authenticate(r.Context(), reqToken)
 		if err != nil {
 			logger.Error("AUTHENTICATION FAILED", zap.Error(err), zap.String("TOKEN", reqToken))
