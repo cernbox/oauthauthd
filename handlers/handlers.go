@@ -135,6 +135,7 @@ func BasicAuthOnly(logger *zap.Logger, userBackend pkg.UserBackend, sleepPause i
 
 		logger.Info("AUTHENTICATION SUCCEDED", zap.String("USERNAME", user))
 		w.Header().Set("user", user)
+		w.Header().Set("letter", string(user[0]))
 		w.WriteHeader(http.StatusOK)
 	})
 }
