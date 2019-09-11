@@ -6,8 +6,8 @@ import (
 
 	"github.com/cernbox/gohub/goconfig"
 	"github.com/cernbox/gohub/gologger"
-	"github.com/diocas/oauthauthd/handlers"
-	"github.com/diocas/oauthauthd/pkg/mysqluserbackend"
+	"github.com/cernbox/oauthauthd/handlers"
+	"github.com/cernbox/oauthauthd/pkg/mysqluserbackend"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/diocas/oauthauthd/pkg"
+	"github.com/cernbox/oauthauthd/pkg"
 
 	"go.uber.org/zap"
 )

@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/diocas/oauthauthd/pkg"
+	"github.com/cernbox/oauthauthd/pkg"
 	_ "github.com/go-sql-driver/mysql"
 	"go.uber.org/zap"
 )
