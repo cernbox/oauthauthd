@@ -27,6 +27,8 @@ func main() {
 	gc.Add("mysql-password", "owncloud", "MySQL server password.")
 	gc.Add("mysql-db", "owncloud", "DB name.")
 	gc.Add("safety-sleep", 5, "Seconds to pause requests on authentication failure.")
+	gc.Add("cache-size", 1000000, "max number of oauth tokens to cache")
+	gc.Add("cache-ttl", 60, "ttl for cache entries to expire")
 	gc.Add("admin-secret", "bar", "secreto to access admin APIs for cache manipulation.")
 	gc.BindFlags()
 	gc.ReadConfig()
@@ -34,12 +36,14 @@ func main() {
 	logger := gologger.New(gc.GetString("log-level"), gc.GetString("app-log"))
 
 	opt := &mysqluserbackend.Options{
-		Hostname: gc.GetString("mysql-hostname"),
-		Port:     gc.GetInt("mysql-port"),
-		Username: gc.GetString("mysql-username"),
-		Password: gc.GetString("mysql-password"),
-		DB:       gc.GetString("mysql-db"),
-		Logger:   logger,
+		Hostname:  gc.GetString("mysql-hostname"),
+		Port:      gc.GetInt("mysql-port"),
+		Username:  gc.GetString("mysql-username"),
+		Password:  gc.GetString("mysql-password"),
+		DB:        gc.GetString("mysql-db"),
+		CacheSize: gc.GetInt("cache-size"),
+		CacheTTL:  gc.GetInt("cache-ttl"),
+		Logger:    logger,
 	}
 	ub := mysqluserbackend.New(opt)
 
